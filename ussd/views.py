@@ -53,7 +53,7 @@ def index(request):
                 if data['success'] == True:
                     response = "END Ahsante usajili umekamilika. \n"
                 else:
-                    response = f"END Usajili haujakamilika jaribu tena."
+                    response = f"END Samahani usajili haujakamilika jaribu tena."
             except Exception as e:
                 print(e)
                 response = f"END Ndugu mteja, kuna tatizo la kimtandao kwa sasa. Tafadhali jaribu tena baadae."
