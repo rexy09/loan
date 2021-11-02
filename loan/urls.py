@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-	path('ussd/', include('ussd.urls')),
+    path('ussd/', include('ussd.urls', namespace='ussd')),
     path('admin/', admin.site.urls),
 ]
