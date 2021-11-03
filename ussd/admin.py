@@ -13,3 +13,5 @@ class SajiliAdmin(admin.ModelAdmin):
     list_filter = ('created_at',)
     search_fields = ('full_name', 'phone_number',)
     ordering = ('full_name',)
+
+admin.site.register(TumaPesa)
