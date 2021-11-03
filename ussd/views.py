@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render,redirect
+from django.http import HttpResponse, HttpResponseRedirect
 import json
 import requests
 
@@ -21,7 +21,9 @@ def index(request):
             response += "1. Sajili \n"
             response += "2. Tuma Pesa \n"
             response += "00. Exit \n"
-       
+        elif text == "00":
+            print(text)
+            return redirect("ussd:sajili")
         elif text == "1":
             print(text)
             response = "CON Menu > Sajili \n"
