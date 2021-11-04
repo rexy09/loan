@@ -27,7 +27,7 @@ def index(request):
 		response = ""
 
 		if text == "":
-			response = "CON  Menu   \n"
+			response = "CON  Tikunet   \n"
 			response += "1. Sajili \n"
 			response += "2. Tuma Pesa \n"
 			response += "00. Exit \n"
