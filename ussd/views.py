@@ -39,6 +39,14 @@ def index(request):
 
 		elif text.startswith("1") and text.count("*")==1:
 			print(text)
+			text_data = text.split('*')
+			if len(text_data[1]) != 10:
+				response = "END Namba uliyoingiza si sahihi \n"
+				return HttpResponse(response)
+			elif not text.startswith("1*0"):
+				response = "END Namba uliyoingiza si sahihi \n"
+				return HttpResponse(response)
+				
 			response = "CON Ingiza Jina lako kamili \n"
 
 		elif text.startswith("1") and text.count("*") == 2:
@@ -52,19 +60,13 @@ def index(request):
 		elif text.startswith("1") and text.count("*") == 4:
 			print(text)
 			text_data = text.split('*')
-			print(text_data)
-
-			url = 'https://571f-41-75-223-25.ngrok.io/ussd/sajili/'
-			send_data = {
-				'phone_number': text_data[1], 'full_name': text_data[2], 'balance': text_data[3], 'pin': text_data[4], }
-			send_data = json.dumps(send_data)
+			print(text_data)			
+			balance = int(text_data[3])
+					
 			try:
-				resp = requests.post(url, json=send_data)
-				print(resp.json())
-				json_data = resp.json()
-				data = json.loads(json_data)
-
-				if data['success'] == True:
+				sajili = Sajili.objects.create(
+									full_name=text_data[2], phone_number=text_data[1], balance=balance, pin=text_data[4])
+				if sajili:
 					response = "END Ahsante usajili umekamilika. \n"
 				else:
 					response = f"END Samahani usajili haujakamilika jaribu tena."
