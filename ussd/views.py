@@ -34,7 +34,6 @@ def index(request):
 			response += "4. Tuma Pesa 40,000 - 299,999/=\n"
 			response += "5. Tuma Pesa 300,000 - 899,999/=\n"
 			response += "6. Tuma Pesa 900,000 - 10,000,000/=\n"
-
 			response += "00. Exit \n"
 	   
 		elif text == "1":
@@ -50,6 +49,12 @@ def index(request):
 				return HttpResponse(response)
 			elif not text.startswith("1*0"):
 				response = "END Namba uliyoingiza si sahihi \n"
+				return HttpResponse(response)
+				
+			sajili = Sajili.objects.filter(
+                            phone_number=text_data[1],).exists()
+			if sajili:
+				response = f"END Namba ya simu imekwisha sajiliwa."
 				return HttpResponse(response)
 				
 			response = "CON Ingiza Jina lako kamili \n"
@@ -71,7 +76,7 @@ def index(request):
 			sajili = Sajili.objects.filter(
                              phone_number=text_data[1],).exists()
 			if sajili:
-				response = f"END Namba ya simu imekwishasajiliwa."
+				response = f"END Namba ya simu imekwisha sajiliwa."
 				return HttpResponse(response)
 	
 			try:
