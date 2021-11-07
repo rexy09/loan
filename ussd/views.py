@@ -86,91 +86,115 @@ def index(request):
 			amount = re.sub("2\*.+\*", '', text)
 			amount = Decimal(amount)
 			print(receiver)
-			if 5000 > amount:
-				response = f"END Kiasi ulichoingiza kipo chini ya Tshs. 50,00/="
-			if 5000 <= amount <= 6000:
-				answer = calculate(amount, 375, 0.001)
-				t = T(375, 0.001)
+
+			# Amount Range validation
+			if 100 > amount:
+				response = f"END Kiasi ulichoingiza kipo chini ya Tshs. 100/="
+				return HttpResponse(response)
+			elif amount > 10000000:
+				response = f"END Kiasi ulichoingiza kipo juu ya Tshs. 10000000/="
+				return HttpResponse(response)
+				
+			kiwango = Kiwango.objects.filter(minimum__gte=amount, maximum__lte=amount).first()
+
+			if kiwango:
+				answer = calculate(amount, kiwango.fee, kiwango.tofauti)
+				t = T(kiwango.fee, kiwango.tofauti)
 				try:
 					obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
 					response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
 				except Exception as err:
 					print(err)
 					response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
+			else:
+				response = "END Kiasi uliyoingiza si sahihi \n"
+				
+				
+			# if 5000 > amount:
+			# 	response = f"END Kiasi ulichoingiza kipo chini ya Tshs. 50,00/="
+			# if 5000 <= amount <= 6000:
+			# 	answer = calculate(amount, 375, 0.001)
+			# 	t = T(375, 0.001)
+			# 	try:
+			# 		obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
+			# 		response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
+			# 	except Exception as err:
+			# 		print(err)
+			# 		response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
 
-			elif 6001 <= amount <= 7000:
-				answer = calculate(amount, 475, 0.008)
-				t = T(475, 0.008)
-				try:
-					obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
-					response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
-				except Exception as err:
-					print(err)
-					response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
+			# elif 6001 <= amount <= 7000:
+			# 	answer = calculate(amount, 475, 0.008)
+			# 	t = T(475, 0.008)
+			# 	try:
+			# 		obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
+			# 		response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
+			# 	except Exception as err:
+			# 		print(err)
+			# 		response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
 
-			elif 7001 <= amount <= 8000:
-				answer = calculate(amount, 575, 3.7)
-				t = T(575, 3.7)
-				try:
-					obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
-					response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
-				except Exception as err:
-					print(err)
-					response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
-
-
-			elif 8001 <= amount <= 9000:
-				answer = calculate(amount, 600, 3.8)
-				t = T(600, 3.8)
-				try:
-					obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
-					response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
-				except Exception as err:
-					print(err)
-					response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
-
-
-			elif 9001 <= amount <= 10000:
-				answer = calculate(amount, 650, 4.3)
-				t = T(650, 4.3)
-				try:
-					obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
-					response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
-				except Exception as err:
-					print(err)
-					response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
-
-			elif 10001 <= amount <= 11000:
-				answer = calculate(amount, 750, 5.1)
-				t = T(750, 5.1)
-				try:
-					obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
-					response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
-				except Exception as err:
-					print(err)
-					response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
+			# elif 7001 <= amount <= 8000:
+			# 	answer = calculate(amount, 575, 3.7)
+			# 	t = T(575, 3.7)
+			# 	try:
+			# 		obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
+			# 		response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
+			# 	except Exception as err:
+			# 		print(err)
+			# 		response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
 
 
-			elif 11001 <= amount <= 12000:
-				answer = calculate(amount, 800, 6.2)
-				t = T(800, 6.2)
-				try:
-					obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
-					response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
-				except Exception as err:
-					print(err)
-					response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
+			# elif 8001 <= amount <= 9000:
+			# 	answer = calculate(amount, 600, 3.8)
+			# 	t = T(600, 3.8)
+			# 	try:
+			# 		obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
+			# 		response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
+			# 	except Exception as err:
+			# 		print(err)
+			# 		response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
 
 
-			elif 12001 <= amount <= 13000:
-				answer = calculate(amount, 900, 7.4)
-				t = T(900, 7.4)
-				try:
-					obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
-					response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
-				except Exception as err:
-					print(err)
-					response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
+			# elif 9001 <= amount <= 10000:
+			# 	answer = calculate(amount, 650, 4.3)
+			# 	t = T(650, 4.3)
+			# 	try:
+			# 		obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
+			# 		response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
+			# 	except Exception as err:
+			# 		print(err)
+			# 		response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
+
+			# elif 10001 <= amount <= 11000:
+			# 	answer = calculate(amount, 750, 5.1)
+			# 	t = T(750, 5.1)
+			# 	try:
+			# 		obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
+			# 		response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
+			# 	except Exception as err:
+			# 		print(err)
+			# 		response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
+
+
+			# elif 11001 <= amount <= 12000:
+			# 	answer = calculate(amount, 800, 6.2)
+			# 	t = T(800, 6.2)
+			# 	try:
+			# 		obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
+			# 		response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
+			# 	except Exception as err:
+			# 		print(err)
+			# 		response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
+
+
+			# elif 12001 <= amount <= 13000:
+			# 	answer = calculate(amount, 900, 7.4)
+			# 	t = T(900, 7.4)
+			# 	try:
+			# 		obj = TumaPesa.objects.create(no_mtumaji=phone_number, no_mpokeaji=receiver, kiasi=amount, tofauti=t, jumla=answer)
+			# 		response = f"END Umefanikiwa kutuma kiasi {amount} kwa {receiver}"
+			# 	except Exception as err:
+			# 		print(err)
+			# 		response = f"END Samahani kuna shida ya kimtandao {amount} kwa {receiver}"
 
 		elif text.startswith("2*"): 
 			response = "END Namba uliyoingiza si sahihi \n"
