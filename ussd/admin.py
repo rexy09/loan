@@ -15,4 +15,7 @@ class SajiliAdmin(admin.ModelAdmin):
     ordering = ('full_name',)
 
 admin.site.register(TumaPesa)
-admin.site.register(Kiwango)
+admin.site.register(TumaPesa1)
+admin.site.register(TumaPesa2)
+admin.site.register(TumaPesa3)
+admin.site.register(TumaPesa4)

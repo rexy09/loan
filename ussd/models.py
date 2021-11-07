@@ -36,17 +36,69 @@ class TumaPesa(models.Model):
 		return self.no_mtumaji
 
 
-class Kiwango(models.Model):
-	minimum = models.DecimalField(max_digits=19, decimal_places=3, default=0)
-	maximum = models.DecimalField(max_digits=19, decimal_places=3, default=0)
-	fee = models.DecimalField(max_digits=19, decimal_places=3, default=0)
-	tofauti = models.DecimalField(max_digits=19, decimal_places=3, default=0)
+class TumaPesa1(models.Model):
+	no_mtumaji = models.CharField(max_length=13)
+	no_mpokeaji = models.CharField(max_length=13)
+	kiasi = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	tofauti = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	jumla = models.DecimalField(max_digits=19, decimal_places=2, default=0)
 	updated_at = models.DateTimeField(auto_now=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 
 	class Meta:
-		verbose_name = "Kiwango"
-		verbose_name_plural = "Viwango"
+		verbose_name = "Tuma Pesa 1"
+		verbose_name_plural = "Tuma Pesa 1"
 
 	def __str__(self):
-		return '{0} - {1}'.format(self.minimum, self.maximum)
+		return self.no_mtumaji
+
+
+class TumaPesa2(models.Model):
+	no_mtumaji = models.CharField(max_length=13)
+	no_mpokeaji = models.CharField(max_length=13)
+	kiasi = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	tofauti = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	jumla = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	updated_at = models.DateTimeField(auto_now=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+
+	class Meta:
+		verbose_name = "Tuma Pesa 2"
+		verbose_name_plural = "Tuma Pesa 2"
+
+	def __str__(self):
+		return self.no_mtumaji
+
+
+class TumaPesa3(models.Model):
+	no_mtumaji = models.CharField(max_length=13)
+	no_mpokeaji = models.CharField(max_length=13)
+	kiasi = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	tofauti = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	jumla = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	updated_at = models.DateTimeField(auto_now=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+
+	class Meta:
+		verbose_name = "Tuma Pesa 3"
+		verbose_name_plural = "Tuma Pesa 3"
+
+	def __str__(self):
+		return self.no_mtumaji
+
+
+class TumaPesa4(models.Model):
+	no_mtumaji = models.CharField(max_length=13)
+	no_mpokeaji = models.CharField(max_length=13)
+	kiasi = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	tofauti = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	jumla = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	updated_at = models.DateTimeField(auto_now=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+
+	class Meta:
+		verbose_name = "Tuma Pesa 4"
+		verbose_name_plural = "Tuma Pesa 4"
+
+	def __str__(self):
+		return self.no_mtumaji
