@@ -5,7 +5,7 @@ from django.db import models
 class Sajili(models.Model):
 	full_name = models.CharField(max_length=100,)
 	phone_number = models.CharField(max_length=15,unique=True)
-	balance = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	balance = models.DecimalField(max_digits=19, decimal_places=3, default=0)
 	pin = models.CharField(max_length=100,)
 	updated_at = models.DateTimeField(auto_now=True)
 	created_at = models.DateTimeField(auto_now_add=True)
@@ -22,9 +22,9 @@ class Sajili(models.Model):
 class TumaPesa(models.Model):
 	no_mtumaji = models.CharField(max_length=13)
 	no_mpokeaji = models.CharField(max_length=13)
-	kiasi = models.DecimalField(max_digits=19, decimal_places=2, default=0)
-	tofauti = models.DecimalField(max_digits=19, decimal_places=2, default=0)
-	jumla = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	kiasi = models.DecimalField(max_digits=19, decimal_places=3, default=0)
+	tofauti = models.DecimalField(max_digits=19, decimal_places=3, default=0)
+	jumla = models.DecimalField(max_digits=19, decimal_places=3, default=0)
 	updated_at = models.DateTimeField(auto_now=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 
@@ -39,9 +39,9 @@ class TumaPesa(models.Model):
 class TumaPesa1(models.Model):
 	no_mtumaji = models.CharField(max_length=13)
 	no_mpokeaji = models.CharField(max_length=13)
-	kiasi = models.DecimalField(max_digits=19, decimal_places=2, default=0)
-	tofauti = models.DecimalField(max_digits=19, decimal_places=2, default=0)
-	jumla = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	kiasi = models.DecimalField(max_digits=19, decimal_places=3, default=0)
+	tofauti = models.DecimalField(max_digits=19, decimal_places=3, default=0)
+	jumla = models.DecimalField(max_digits=19, decimal_places=3, default=0)
 	updated_at = models.DateTimeField(auto_now=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 
@@ -56,9 +56,9 @@ class TumaPesa1(models.Model):
 class TumaPesa2(models.Model):
 	no_mtumaji = models.CharField(max_length=13)
 	no_mpokeaji = models.CharField(max_length=13)
-	kiasi = models.DecimalField(max_digits=19, decimal_places=2, default=0)
-	tofauti = models.DecimalField(max_digits=19, decimal_places=2, default=0)
-	jumla = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	kiasi = models.DecimalField(max_digits=19, decimal_places=3, default=0)
+	tofauti = models.DecimalField(max_digits=19, decimal_places=3, default=0)
+	jumla = models.DecimalField(max_digits=19, decimal_places=3, default=0)
 	updated_at = models.DateTimeField(auto_now=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 
@@ -73,9 +73,9 @@ class TumaPesa2(models.Model):
 class TumaPesa3(models.Model):
 	no_mtumaji = models.CharField(max_length=13)
 	no_mpokeaji = models.CharField(max_length=13)
-	kiasi = models.DecimalField(max_digits=19, decimal_places=2, default=0)
-	tofauti = models.DecimalField(max_digits=19, decimal_places=2, default=0)
-	jumla = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	kiasi = models.DecimalField(max_digits=19, decimal_places=3, default=0)
+	tofauti = models.DecimalField(max_digits=19, decimal_places=3, default=0)
+	jumla = models.DecimalField(max_digits=19, decimal_places=3, default=0)
 	updated_at = models.DateTimeField(auto_now=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 
@@ -90,9 +90,9 @@ class TumaPesa3(models.Model):
 class TumaPesa4(models.Model):
 	no_mtumaji = models.CharField(max_length=13)
 	no_mpokeaji = models.CharField(max_length=13)
-	kiasi = models.DecimalField(max_digits=19, decimal_places=2, default=0)
-	tofauti = models.DecimalField(max_digits=19, decimal_places=2, default=0)
-	jumla = models.DecimalField(max_digits=19, decimal_places=2, default=0)
+	kiasi = models.DecimalField(max_digits=19, decimal_places=3, default=0)
+	tofauti = models.DecimalField(max_digits=19, decimal_places=3, default=0)
+	jumla = models.DecimalField(max_digits=19, decimal_places=3, default=0)
 	updated_at = models.DateTimeField(auto_now=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 

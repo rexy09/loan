@@ -10,12 +10,12 @@ from .models import *
 
 def calculate(amount, tofauti, ongezeko):
     total = (tofauti * Decimal(ongezeko)) + tofauti + amount
-    return round(Decimal(total), 2)
+    return round(Decimal(total), 3)
 
 
 def T(tofauti, ongezeko):
     T = (tofauti * Decimal(ongezeko)) + tofauti
-    return round(Decimal(T), 2)
+    return round(Decimal(T), 3)
 
 
 @csrf_exempt
